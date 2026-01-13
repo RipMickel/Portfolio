@@ -34,3 +34,8 @@ section {
     padding: 40px 20px;
     text-align: center;
 }
+#projectList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
