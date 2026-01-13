@@ -69,3 +69,12 @@ h2 {
   margin-top: 10px;
   color: #61dafb;
 }
+footer {
+  background: #111;
+  padding: 30px 20px;
+}
+
+.social-links a {
+  margin: 0 10px;
+  font-size: 1.1rem;
+}
