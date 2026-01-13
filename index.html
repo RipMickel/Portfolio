@@ -1,86 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="css/styles.css" /></head>
+  <meta charset="UTF‑8" />
+  <meta name="viewport" content="width=device‑width, initial‑scale=1" />
+  <title>Home | Mickel Angelo Gaudicos</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
 <body>
-    <header id="welcome-section">
-    <div class="container">
-              <h1>Hi, I'm Mickel Angelo Gaudicos</h1>
-                    <p>Web Developer</p>
 
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="skills.html">Skills</a>
+    <a href="projects.html">Projects</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <!-- WELCOME -->
+  <header id="welcome-section">
+    <div class="container">
+      <h1>Hi, I'm Mickel Angelo Gaudicos</h1>
+      <p>Web Developer</p>
     </div>
   </header>
 
-  <nav id="navbar">
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </nav>
-<section id="about">
-  <h2>About Me</h2>
-  <p>
-    Hi there! I’m a Web Developer who loves crafting intuitive and engaging
-    digital experiences. Whether I’m working with HTML, CSS, JavaScript, or
-    exploring the latest in front‑end frameworks, I focus on building things
-    that feel great to use. I enjoy solving problems, collaborating with teams,
-    and constantly improving my skills.
-  </p>
-</section>
-
-
-   <section id="skills">
-    <h2>Skills</h2>
-    <div class="skills-list">
-      <span>HTML</span>
-      <span>CSS</span>
-      <span>JavaScript</span>
-      <span>React</span>
-    </div>
-  </section>
-
-    <section id="projects">
-    <h2>Projects</h2>
-    <div class="project-cards">
-        <div class="project-card">
-<img class="project-cover" src="images/project1.png" alt="Project One Cover" />
-        <h3>Task Management System</h3>
-        <p>This is my major project (Capstone Project).</p>
-          <a href="https://github.com/RipMickel/task_mgmt" target="_blank">View Project</a>
-      </div>
-       <div class="project-cards">
-        <div class="project-card">
-<img class="project-cover" src="images/project2.png" alt="Project Two Cover" />
-        <h3>Book lovers</h3>
-        <p>Website for book lovers</p>
-          <a href="https://github.com/RipMickel/Finals_DB" target="_blank">View Project</a>
-      </div>
-  </section>
-
-       <footer id="contact">
-    <h2>Connect with Me</h2>
-    <div class="social-links">
-              <a href="https://github.com/RipMickel" target="_blank">GitHub</a>
-                  <a href="mailto:gaudicosmickelangelo@gmail.com" target="_blank">gaudicosmickelangelo@gmail.com</a>
-
-
-<p>&copy; 2026 Mickel Angelo Gaudicos</p>
-  </footer>
+  <!-- RAINBOW HEADER SCRIPT -->
   <script>
-  const rainbowHeader = document.querySelector("#welcome-section h1");
-  let hue = 0;
+    const rainbowHeader = document.querySelector("#welcome-section h1");
+    let hue = 0;
+    function animateRainbow() {
+      rainbowHeader.style.color = `hsl(${hue}, 100%, 50%)`;
+      hue = (hue + 1) % 360;
+      requestAnimationFrame(animateRainbow);
+    }
+    animateRainbow();
+  </script>
 
-  function animateRainbow() {
-    // animate color hue through 360 degrees
-    rainbowHeader.style.color = `hsl(${hue}, 100%, 50%)`;
-    hue = (hue + 1) % 360;
-    requestAnimationFrame(animateRainbow);
-  }
-
-  animateRainbow();
-</script>
 </body>
 </html>
