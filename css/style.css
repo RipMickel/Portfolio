@@ -30,3 +30,7 @@ header nav a {
 #hero .highlight {
     color: #0077cc;
 }
+section {
+    padding: 40px 20px;
+    text-align: center;
+}
