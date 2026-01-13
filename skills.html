@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF‑8" />
+  <meta name="viewport" content="width=device‑width, initial‑scale=1" />
+  <title>Skills | Mickel Angelo Gaudicos</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<nav id="sidebar">
+  <div class="sidebar-profile">
+    <img src="images/profile.png" alt="Mickel Angelo Gaudicos Profile">
+  </div>
+
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+     <a href="education.html">Education</a>
+  <a href="skills.html">Skills</a>
+  <a href="projects.html">Projects</a>
+    <a href="resume.html">Resume</a>
+
+</nav>
+
+  <!-- SKILLS -->
+<section id="skills">
+  <h2>Skills</h2>
+
+  <div class="skill-container">
+    <div class="skill-label">HTML</div>
+    <div class="skill-bar">
+      <div class="progress html" data-percent="95">
+        <span class="skill-text">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="skill-container">
+    <div class="skill-label">CSS</div>
+    <div class="skill-bar">
+      <div class="progress css" data-percent="60">
+        <span class="skill-text">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="skill-container">
+    <div class="skill-label">JavaScript</div>
+    <div class="skill-bar">
+      <div class="progress js" data-percent="44">
+        <span class="skill-text">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="skill-container">
+    <div class="skill-label">React</div>
+    <div class="skill-bar">
+      <div class="progress react" data-percent="42">
+        <span class="skill-text">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="skill-container">
+    <div class="skill-label">PHP</div>
+    <div class="skill-bar">
+      <div class="progress php" data-percent="55">
+        <span class="skill-text">0%</span>
+      </div>
+    </div>
+  </div>
+
+<div class="skill-container">
+  <div class="skill-label">Ionic</div>
+  <div class="skill-bar">
+    <div class="progress ionic" data-percent="48">
+      <span class="skill-text">0%</span>
+    </div>
+  </div>
+</div>
+
+
+  <div class="skill-container">
+  <div class="skill-label">TypeScript</div>
+  <div class="skill-bar">
+    <div class="progress typescript" data-percent="39">
+      <span class="skill-text">0%</span>
+    </div>
+  </div>
+</div>
+
+</section>
+
+
+
+    <footer id="contact">
+    <h2>Connect with Me</h2>
+    <div class="social-links">
+      <a href="https://github.com/RipMickel" target="_blank">GitHub</a>
+      <a href="mailto:gaudicosmickelangelo@gmail.com" target="_blank">gaudicosmickelangelo@gmail.com</a>
+    </div>
+    <p>&copy; 2026 Mickel Angelo Gaudicos</p>
+  </footer>
+
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+  const bars = document.querySelectorAll(".progress");
+  bars.forEach(bar => {
+    const target = bar.getAttribute("data-percent");
+    const text = bar.querySelector(".skill-text");
+
+    // small delay so transition triggers
+    setTimeout(() => {
+      bar.style.width = target + "%";
+    }, 100);
+
+    // animate number inside
+    let current = 0;
+    const interval = setInterval(() => {
+      if (current >= target) clearInterval(interval);
+      text.textContent = current + "%";
+      current++;
+    }, 20);
+  });
+});
+</script>
+
+
+
+</body>
+</html>
