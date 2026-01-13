@@ -46,6 +46,7 @@
     <h2>Projects</h2>
     <div class="project-cards">
         <div class="project-card">
+<img class="project-cover" src="images/project1.png" alt="Project One Cover" />
         <h3>Project One</h3>
         <p>This is my major project (Capstone Project).</p>
           <a href="https://github.com/RipMickel/task_mgmt" target="_blank">View Project</a>
@@ -56,9 +57,23 @@
     <h2>Connect with Me</h2>
     <div class="social-links">
               <a href="https://github.com/RipMickel" target="_blank">GitHub</a>
-      <a href="gaudicosmickelangelo@gmail.com" target="_blank">Gmail</a>
-      
+                  <a href="mailto:gaudicosmickelangelo@gmail.com" target="_blank">gaudicosmickelangelo@gmail.com</a>
+
+
 <p>&copy; 2026 Mickel Angelo Gaudicos</p>
   </footer>
+  <script>
+  const rainbowHeader = document.querySelector("#welcome-section h1");
+  let hue = 0;
+
+  function animateRainbow() {
+    // animate color hue through 360 degrees
+    rainbowHeader.style.color = `hsl(${hue}, 100%, 50%)`;
+    hue = (hue + 1) % 360;
+    requestAnimationFrame(animateRainbow);
+  }
+
+  animateRainbow();
+</script>
 </body>
 </html>
