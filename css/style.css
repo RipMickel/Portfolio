@@ -49,3 +49,23 @@ h2 {
   border-radius: 4px;
   font-size: 0.9rem;
 }
+.project-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.project-card {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  padding: 20px;
+  width: 250px;
+  border-radius: 8px;
+}
+
+.project-card a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #61dafb;
+}
