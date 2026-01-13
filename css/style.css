@@ -10,3 +10,16 @@ a {
   color: #61dafb;
   text-decoration: none;
 }
+#navbar {
+  background: #111;
+  padding: 10px;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+#navbar a:hover {
+  color: #fff;
+}
