@@ -15,6 +15,7 @@
 
   <a href="index.html">Home</a>
   <a href="about.html">About</a>
+  <a href="education.html">Education</a>
   <a href="skills.html">Skills</a>
   <a href="projects.html">Projects</a>
   <a href="resume.html">Resume</a>
@@ -27,8 +28,11 @@
   <header id="welcome-section">
     <div class="container">
       <h1>Hi, I'm Mickel Angelo Gaudicos</h1>
+<h2 id="typing-animation">
 
-<p class="typing">Web Developer</p>
+<p>Web Developer</p>
+</h2>
+
     </div>
   </header>
 
@@ -42,17 +46,44 @@
     </div>
     <p>&copy; 2026 Mickel Angelo Gaudicos</p>
   </footer>
-  <!-- RAINBOW HEADER SCRIPT -->
-  <script>
-    const rainbowHeader = document.querySelector("#welcome-section h1");
-    let hue = 0;
-    function animateRainbow() {
-      rainbowHeader.style.color = `hsl(${hue}, 100%, 50%)`;
-      hue = (hue + 1) % 360;
-      requestAnimationFrame(animateRainbow);
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const rainbowHeader = document.querySelector("#welcome-section h1");
+  let hue = 0;
+  function animateRainbow() {
+    rainbowHeader.style.color = `hsl(${hue}, 100%, 50%)`;
+    hue = (hue + 1) % 360;
+    requestAnimationFrame(animateRainbow);
+  }
+  animateRainbow();
+
+  const element = document.getElementById("typing-animation");
+  if (!element) return; 
+
+  const text = "Web Developer";
+  let index = 0;
+  let forward = true;
+
+  function typeLoop() {
+    if (forward) {
+      element.textContent += text[index];
+      index++;
+      if (index === text.length) {
+        forward = false;
+        return setTimeout(typeLoop, 1000); 
+      }
+    } else {
+      element.textContent = text.substring(0, index - 1);
+      index--;
+      if (index === 0) forward = true;
     }
-    animateRainbow();
-  </script>
+    setTimeout(typeLoop, 100);
+  }
+
+  typeLoop();
+});
+</script>
 
 </body>
 </html>
