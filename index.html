@@ -1,88 +1,662 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF‑8" />
-  <meta name="viewport" content="width=device‑width, initial‑scale=1" />
-  <title>Home | Mickel Angelo Gaudicos</title>
-  <link rel="stylesheet" href="css/styles.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mickel Angelo | Full Stack Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&family=Source+Code+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --purple:#c770f0;
+  --purple-dark:#623686;
+  --purple-light:#e09cf5;
+  --bg:#1b1a2e;
+  --bg2:#16213e;
+  --bg3:#0f3460;
+  --text:#eee;
+  --muted:#a0a0b0;
+  --nav-h:60px;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Raleway',sans-serif;
+  overflow-x:hidden;
+  min-height:100vh;
+}
+
+/* CANVAS PARTICLES */
+#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;
+  height:var(--nav-h);
+  background:rgba(27,26,46,0.95);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(199,112,240,0.15);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2.5rem;z-index:1000;
+}
+.logo{
+  font-family:'Source Code Pro',monospace;
+  font-size:1.1rem;font-weight:600;
+  color:var(--purple);letter-spacing:0.05em;
+  text-decoration:none;
+}
+.logo span{color:var(--text)}
+.nav-links{display:flex;gap:1.75rem;list-style:none}
+.nav-links a{
+  font-size:0.82rem;font-weight:500;
+  color:var(--muted);text-decoration:none;
+  letter-spacing:0.06em;text-transform:uppercase;
+  transition:color .2s;position:relative;padding-bottom:4px;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:0;left:0;
+  width:0;height:2px;background:var(--purple);
+  transition:width .3s;
+}
+.nav-links a:hover{color:var(--purple)}
+.nav-links a:hover::after{width:100%}
+
+/* Hamburger for mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--purple);transition:all .3s}
+.nav-mobile{display:none;flex-direction:column;gap:0;position:fixed;top:var(--nav-h);left:0;right:0;background:rgba(27,26,46,0.98);border-bottom:1px solid rgba(199,112,240,0.2);z-index:999;padding:1rem 0}
+.nav-mobile.open{display:flex}
+.nav-mobile a{padding:0.75rem 2rem;color:var(--muted);text-decoration:none;font-size:0.85rem;letter-spacing:0.06em;text-transform:uppercase;transition:color .2s;border-bottom:1px solid rgba(199,112,240,0.06)}
+.nav-mobile a:hover{color:var(--purple)}
+
+/* SECTIONS */
+section{
+  min-height:100vh;
+  padding:calc(var(--nav-h) + 60px) 2.5rem 60px;
+  max-width:1000px;margin:0 auto;
+  position:relative;z-index:1;
+}
+#home{
+  display:flex;flex-direction:column;
+  justify-content:center;
+  min-height:100vh;padding-top:var(--nav-h);
+}
+
+/* HOME */
+.home-intro{
+  font-size:1rem;color:var(--muted);
+  font-family:'Source Code Pro',monospace;
+  margin-bottom:0.75rem;letter-spacing:0.05em;
+}
+.home-name{
+  font-size:clamp(2.5rem,7vw,4.5rem);
+  font-weight:700;line-height:1.1;
+  margin-bottom:0.25rem;
+}
+.home-name .highlight{
+  background:linear-gradient(90deg,var(--purple),var(--purple-light));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.home-typewriter{
+  font-size:clamp(1rem,3vw,1.6rem);
+  color:var(--muted);font-weight:400;
+  margin-bottom:2rem;min-height:2.5rem;
+  display:flex;align-items:center;gap:4px;
+}
+.typewriter-text{color:var(--purple);font-weight:600}
+.cursor{
+  display:inline-block;width:2px;height:1.2em;
+  background:var(--purple);vertical-align:text-bottom;
+  animation:blink 0.8s step-end infinite;margin-left:2px;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+.home-desc{
+  max-width:520px;color:var(--muted);
+  font-size:0.95rem;line-height:1.85;margin-bottom:2.5rem;
+}
+.btn-row{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{
+  display:inline-block;
+  font-size:0.8rem;font-weight:600;
+  letter-spacing:0.08em;text-transform:uppercase;
+  padding:0.7rem 1.75rem;
+  border:1.5px solid var(--purple);
+  color:var(--purple);text-decoration:none;
+  background:transparent;cursor:pointer;
+  transition:all .3s;border-radius:4px;
+  font-family:'Raleway',sans-serif;
+}
+.btn:hover{background:var(--purple);color:#fff}
+.btn-fill{background:var(--purple);color:#fff}
+.btn-fill:hover{background:transparent;color:var(--purple)}
+
+.social-row{display:flex;gap:1.25rem;margin-top:2.5rem}
+.social-link{
+  width:40px;height:40px;border-radius:50%;
+  border:1.5px solid var(--purple-dark);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--purple);text-decoration:none;
+  transition:all .3s;background:transparent;
+}
+.social-link:hover{background:var(--purple);color:#fff;border-color:var(--purple);transform:translateY(-3px)}
+
+/* SECTION HEADER */
+.section-header{margin-bottom:3rem;text-align:center}
+.section-tag{
+  font-family:'Source Code Pro',monospace;
+  font-size:0.72rem;color:var(--purple);
+  letter-spacing:0.15em;text-transform:uppercase;
+  margin-bottom:0.5rem;
+}
+.section-title{
+  font-size:clamp(1.75rem,4vw,2.5rem);
+  font-weight:700;position:relative;display:inline-block;
+}
+.section-title::after{
+  content:'';display:block;
+  width:60px;height:3px;
+  background:linear-gradient(90deg,var(--purple),transparent);
+  margin:0.5rem auto 0;
+}
+.section-divider-line{
+  width:100%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(199,112,240,0.3),transparent);
+  margin-top:1rem;
+}
+
+/* ABOUT */
+.about-grid{
+  display:grid;grid-template-columns:1fr 1.6fr;
+  gap:3rem;align-items:start;
+}
+.about-avatar{display:flex;align-items:center;justify-content:center}
+.avatar-circle{
+  width:220px;height:220px;border-radius:50%;
+  border:3px solid var(--purple);
+  background:linear-gradient(135deg,var(--bg2),var(--bg3));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Raleway',sans-serif;font-size:5rem;font-weight:700;
+  color:var(--purple);
+  box-shadow:0 0 40px rgba(199,112,240,0.2);
+  position:relative;
+}
+.avatar-circle::before{
+  content:'';position:absolute;inset:-8px;
+  border-radius:50%;border:1px solid rgba(199,112,240,0.2);
+  animation:spin 8s linear infinite;
+  border-top-color:var(--purple);
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.about-content h3{font-size:1.5rem;font-weight:700;margin-bottom:0.25rem}
+.about-content .role{
+  color:var(--purple);font-size:0.9rem;
+  font-family:'Source Code Pro',monospace;
+  margin-bottom:1.25rem;letter-spacing:0.05em;
+}
+.about-content p{color:var(--muted);font-size:0.92rem;line-height:1.85;margin-bottom:1rem}
+.about-facts{margin-top:1.25rem;display:grid;grid-template-columns:1fr 1fr;gap:0.75rem}
+.fact{font-size:0.85rem;color:var(--muted);line-height:1.6}
+.fact b{color:var(--text)}
+
+/* SKILLS */
+.skills-tabs{
+  display:flex;gap:0.5rem;justify-content:center;
+  margin-bottom:2rem;flex-wrap:wrap;
+}
+.tab-btn{
+  font-size:0.78rem;font-weight:600;letter-spacing:0.07em;
+  text-transform:uppercase;padding:0.5rem 1.25rem;
+  border:1.5px solid var(--purple-dark);
+  background:transparent;color:var(--muted);
+  cursor:pointer;border-radius:30px;transition:all .3s;
+  font-family:'Raleway',sans-serif;
+}
+.tab-btn.active,.tab-btn:hover{background:var(--purple);border-color:var(--purple);color:#fff}
+.skills-content{display:none}
+.skills-content.active{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:1rem}
+.skill-card{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(199,112,240,0.15);
+  border-radius:8px;padding:1.25rem 1rem;
+  display:flex;flex-direction:column;align-items:center;gap:0.6rem;
+  transition:all .3s;cursor:default;
+}
+.skill-card:hover{
+  border-color:var(--purple);
+  transform:translateY(-4px);
+  box-shadow:0 8px 24px rgba(199,112,240,0.15);
+  background:rgba(199,112,240,0.06);
+}
+.skill-emoji{font-size:2rem;line-height:1}
+.skill-name{
+  font-family:'Source Code Pro',monospace;
+  font-size:0.7rem;color:var(--muted);
+  letter-spacing:0.05em;text-align:center;
+}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem}
+.project-card{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(199,112,240,0.15);
+  border-radius:10px;padding:1.75rem;
+  display:flex;flex-direction:column;gap:0.75rem;
+  transition:all .3s;
+}
+.project-card:hover{
+  border-color:var(--purple);
+  transform:translateY(-5px);
+  box-shadow:0 12px 32px rgba(199,112,240,0.12);
+}
+.project-icon{font-size:2rem;margin-bottom:0.25rem}
+.project-title{font-size:1.1rem;font-weight:700}
+.project-desc{color:var(--muted);font-size:0.88rem;line-height:1.7;flex:1}
+.project-tags{display:flex;flex-wrap:wrap;gap:0.4rem}
+.tag{
+  font-size:0.65rem;font-family:'Source Code Pro',monospace;
+  letter-spacing:0.05em;padding:0.2rem 0.6rem;border-radius:20px;
+  background:rgba(199,112,240,0.12);color:var(--purple-light);
+  border:1px solid rgba(199,112,240,0.25);
+}
+.project-links{display:flex;gap:1rem;margin-top:0.5rem}
+.plink{
+  font-size:0.72rem;font-family:'Source Code Pro',monospace;
+  letter-spacing:0.06em;text-transform:uppercase;
+  color:var(--purple);text-decoration:none;transition:color .2s;
+}
+.plink:hover{color:var(--purple-light)}
+
+/* CONTACT */
+#contact{min-height:auto;padding-bottom:5rem}
+.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:3rem;align-items:start}
+.contact-info h3{font-size:1.2rem;font-weight:700;margin-bottom:0.75rem}
+.contact-info p{color:var(--muted);font-size:0.9rem;line-height:1.8;margin-bottom:1.5rem}
+.contact-detail{
+  display:flex;align-items:center;gap:0.75rem;
+  margin-bottom:0.75rem;font-size:0.88rem;color:var(--muted);
+}
+.contact-icon{
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(199,112,240,0.1);border:1px solid rgba(199,112,240,0.25);
+  display:flex;align-items:center;justify-content:center;font-size:0.9rem;flex-shrink:0;
+}
+.form-group{display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1rem}
+.form-label{
+  font-family:'Source Code Pro',monospace;font-size:0.7rem;
+  letter-spacing:0.1em;text-transform:uppercase;color:var(--purple);
+}
+.form-input,.form-textarea{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(199,112,240,0.2);
+  border-radius:6px;padding:0.75rem 1rem;
+  color:var(--text);font-family:'Raleway',sans-serif;font-size:0.9rem;
+  outline:none;transition:border-color .2s;resize:none;
+}
+.form-input:focus,.form-textarea:focus{border-color:var(--purple)}
+.form-textarea{min-height:130px}
+
+/* FOOTER */
+footer{
+  border-top:1px solid rgba(199,112,240,0.15);
+  padding:1.75rem 2.5rem;
+  display:flex;justify-content:space-between;align-items:center;
+  position:relative;z-index:1;
+}
+.footer-text{font-family:'Source Code Pro',monospace;font-size:0.72rem;color:var(--muted);letter-spacing:0.05em}
+.footer-text span{color:var(--purple)}
+.back-top{
+  font-family:'Source Code Pro',monospace;font-size:0.72rem;
+  color:var(--muted);text-decoration:none;letter-spacing:0.06em;transition:color .2s;
+}
+.back-top:hover{color:var(--purple)}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:768px){
+  nav{padding:0 1.25rem}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  section{padding:calc(var(--nav-h)+40px) 1.25rem 40px}
+  .about-grid,.contact-grid{grid-template-columns:1fr}
+  .avatar-circle{width:160px;height:160px;font-size:3.5rem}
+  footer{flex-direction:column;gap:0.5rem;text-align:center}
+  .skills-content.active{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}
+}
+</style>
 </head>
 <body>
 
-<nav id="sidebar">
-  <div class="sidebar-profile">
-    <img src="images/profile.png" alt="Mickel Angelo Gaudicos Profile">
-  </div>
+<canvas id="particles"></canvas>
 
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="education.html">Education</a>
-  <a href="skills.html">Skills</a>
-  <a href="projects.html">Projects</a>
-  <a href="resume.html">Resume</a>
-
+<nav>
+  <a class="logo" href="#home"><span>&lt;</span>MA<span>/&gt;</span></a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
+<div class="nav-mobile" id="nav-mobile">
+  <a href="#home" onclick="closeMenu()">Home</a>
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#skills" onclick="closeMenu()">Skills</a>
+  <a href="#projects" onclick="closeMenu()">Projects</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+</div>
 
+<!-- HOME -->
+<section id="home">
+  <p class="home-intro">Hi there! </p>
+  <h1 class="home-name">I'm <span class="highlight">Mickel Angelo Gaudicos</span></h1>
+  <div class="home-typewriter">
+    <span class="typewriter-text" id="typewriter-text"></span><span class="cursor"></span>
+  </div>
+  <p class="home-desc">A passionate Full Stack Developer based in the Philippines, crafting digital experiences with clean code and creative design. I turn ideas into real, scalable web products.</p>
+  <div class="btn-row">
+    <a href="#projects" class="btn btn-fill">View My Work</a>
+    <a href="#contact" class="btn">Get in Touch</a>
+  </div>
+  <div class="social-row">
+    <a class="social-link" href="https://github.com/RipMickel" target="_blank" title="GitHub">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+      </svg>
+    </a>
+  </div>
+</section>
 
-  <!-- WELCOME -->
-  <header id="welcome-section">
-    <div class="container">
-      <h1>Hi, I'm Mickel Angelo Gaudicos</h1>
-<h2 id="typing-animation">
-
-</h2>
-
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header reveal">
+    <p class="section-tag">// who am i</p>
+    <h2 class="section-title">About Me</h2>
+    <div class="section-divider-line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-avatar reveal">
+      <div class="avatar-circle">mickel.dev</div>
     </div>
-  </header>
-
-
-
-  <footer id="contact">
-    <h2>Connect with Me</h2>
-    <div class="social-links">
-      <a href="https://github.com/RipMickel" target="_blank">GitHub</a>
-      <a href="mailto:gaudicosmickelangelo@gmail.com" target="_blank">gaudicosmickelangelo@gmail.com</a>
+    <div class="about-content reveal">
+      <h3>Mickel Angelo Gaudicos</h3>
+      <p class="role">Full Stack Developer</p>
+      <p>I'm a passionate Full Stack Developer who loves building things for the web — from pixel-perfect interfaces to robust backend systems. I enjoy the entire process of creating digital products.</p>
+      <p>I'm constantly learning, experimenting, and pushing myself to write cleaner, more efficient code. I believe great software is the result of empathy, creativity, and technical precision.</p>
+      <div class="about-facts">
+        <div class="fact"><b>📍 Location:</b><br>Philippines</div>
+        <div class="fact"><b>🎓 Focus:</b><br>Full Stack Dev</div>
+        <div class="fact"><b>💼 Status:</b><br>Open to Work</div>
+        <div class="fact"><b>🐙 GitHub:</b><br>mickel.dev</div>
+      </div>
     </div>
-    <p>&copy; 2026 Mickel Angelo Gaudicos</p>
-  </footer>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header reveal">
+    <p class="section-tag">// what i know</p>
+    <h2 class="section-title">Skills</h2>
+    <div class="section-divider-line"></div>
+  </div>
+  <div class="skills-tabs reveal">
+    <button class="tab-btn active" onclick="showTab('frontend',this)">Frontend</button>
+    <button class="tab-btn" onclick="showTab('backend',this)">Backend</button>
+    <button class="tab-btn" onclick="showTab('tools',this)">Tools</button>
+  </div>
+
+  <div id="tab-frontend" class="skills-content active reveal">
+  <div class="skill-card"><span class="skill-emoji">⚡</span><span class="skill-name">Electron</span></div>
+  <div class="skill-card"><span class="skill-emoji">📱</span><span class="skill-name">Ionic</span></div>
+  <div class="skill-card"><span class="skill-emoji">🗺️</span><span class="skill-name">Leaflet</span></div>
+  <div class="skill-card"><span class="skill-emoji">📊</span><span class="skill-name">Chart.js</span></div>
+  <div class="skill-card"><span class="skill-emoji">🎨</span><span class="skill-name">CSS</span></div>
+  <div class="skill-card"><span class="skill-emoji">🌐</span><span class="skill-name">HTML5</span></div>
+</div>
+
+<div id="tab-backend" class="skills-content">
+  <div class="skill-card"><span class="skill-emoji">🐍</span><span class="skill-name">Python</span></div>
+  <div class="skill-card"><span class="skill-emoji">🐘</span><span class="skill-name">PostgreSQL</span></div>
+  <div class="skill-card"><span class="skill-emoji">🗄️</span><span class="skill-name">MariaDB</span></div>
+</div>
+
+<div id="tab-tools" class="skills-content">
+  <div class="skill-card"><span class="skill-emoji">🐙</span><span class="skill-name">Git / GitHub</span></div>
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header reveal">
+    <p class="section-tag">// what i've built</p>
+    <h2 class="section-title">Projects</h2>
+    <div class="section-divider-line"></div>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <div class="project-icon">📊</div>
+      <h3 class="project-title">CID Task management</h3>
+      <p class="project-desc">A full-stack web app with real-time features, email authentication, and a responsive dashboard interface.</p>
+      <div class="project-tags">
+        <span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">Electron</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/RipMickel/task_mgmt" class="plink">GitHub ↗</a>
+      </div>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-icon">🏦</div>
+      <h3 class="project-title">PH-Bizmap</h3>
+      <p class="project-desc">An interactive banking network mapping system for the Philippines, built with Leaflet.js, Chart.js, and vanilla JavaScript.</p>
+      <div class="project-tags">
+        <span class="tag">JavaScript</span><span class="tag">CSS</span><span class="tag">HTML</span><span class="tag">Leaflet</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/RipMickel/ph-bizmap" class="plink">GitHub ↗</a>
+                <a href="ripmickel.github.io/ph-bizmap/" class="plink">Live ↗</a>
+
+      </div>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-icon">📈</div>
+      <h3 class="project-title">OJT Hour Tracking</h3>
+      <p class="project-desc">A simple and efficient system designed to track, manage, and monitor On-the-Job Training (OJT) hours for students and supervisors.</p>
+      <div class="project-tags">
+        <span class="tag">PHP</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/RipMickel/ojt-hours-tracking" class="plink">GitHub ↗</a>
+      </div>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-icon">📋</div>
+      <h3 class="project-title">Inventory System</h3>
+      <p class="project-desc">A complete, fully offline desktop inventory management system built with Electron, SQLite, and modern JavaScript. Designed for small to medium retail stores.</p>
+      <div class="project-tags">
+        <span class="tag">PHP</span><span class="tag">JavaScript</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Electron</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/RipMickel/inventory-system-app" class="plink">GitHub ↗</a>
+      </div>
+    </div>
+      <div class="project-card reveal">
+      <div class="project-icon">👀📍</div>
+      <h3 class="project-title">Laaganan Finder</h3>
+      <p class="project-desc">A modern location-based system designed to help users easily find and explore nearby hangout spots, food trips, and hidden gems.</p>
+      <div class="project-tags">
+        <span class="tag">JavaScript</span><span class="tag">HTML</span><span class="tag">CSS</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/RipMickel/laaganan-finder" class="plink">GitHub ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header reveal">
+    <p class="section-tag">// let's talk</p>
+    <h2 class="section-title">Contact Me</h2>
+    <div class="section-divider-line"></div>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <h3>Get in Touch</h3>
+      <p>Have a project in mind or want to collaborate? Feel free to reach out — I'm always open to new opportunities and conversations.</p>
+      <div class="contact-detail">
+        <div class="contact-icon">📧</div>
+        <span>gaudicosmickelangelo@gmail.com</span>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">📍</div>
+        <span>Philippines</span>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">🐙</div>
+        <span>https://github.com/RipMickel</span>
+      </div>
+    </div>
+    <form class="reveal" onsubmit="handleSubmit(event)">
+      <div class="form-group">
+        <label class="form-label">Name</label>
+        <input class="form-input" type="text" placeholder="Your name" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input class="form-input" type="email" placeholder="your@gmail.com" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Message</label>
+        <textarea class="form-textarea" placeholder="What's on your mind?" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-fill">Send Message →</button>
+      <p id="form-msg" style="margin-top:0.75rem;font-size:0.85rem;color:var(--purple);display:none">✓ Message sent! I'll get back to you soon.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p class="footer-text">Designed &amp; Built by <span>mickel.dev</span></p>
+  <a href="#home" class="back-top">Back to Top ↑</a>
+</footer>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const rainbowHeader = document.querySelector("#welcome-section h1");
-  let hue = 0;
-  function animateRainbow() {
-    rainbowHeader.style.color = `hsl(${hue}, 100%, 50%)`;
-    hue = (hue + 1) % 360;
-    requestAnimationFrame(animateRainbow);
-  }
-  animateRainbow();
+// PARTICLES
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let particles = [];
 
-  const element = document.getElementById("typing-animation");
-  if (!element) return; 
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
 
-  const text = "Web Developer";
-  let index = 0;
-  let forward = true;
+function createParticle() {
+  return {
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    vx: (Math.random() - 0.5) * 0.4,
+    vy: (Math.random() - 0.5) * 0.4,
+    r: Math.random() * 2 + 0.5,
+    alpha: Math.random() * 0.5 + 0.1
+  };
+}
 
-  function typeLoop() {
-    if (forward) {
-      element.textContent += text[index];
-      index++;
-      if (index === text.length) {
-        forward = false;
-        return setTimeout(typeLoop, 1000); 
+for (let i = 0; i < 90; i++) particles.push(createParticle());
+
+function drawParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(199,112,240,${p.alpha})`;
+    ctx.fill();
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+  });
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 110) {
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.strokeStyle = `rgba(199,112,240,${0.08 * (1 - dist / 110)})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
       }
-    } else {
-      element.textContent = text.substring(0, index - 1);
-      index--;
-      if (index === 0) forward = true;
     }
-    setTimeout(typeLoop, 100);
   }
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
 
-  typeLoop();
-});
+// TYPEWRITER
+const words = ['Full Stack Developer', 'PHP Enthusiast', 'Frontend', 'Problem Solver', 'Open Source Contributor'];
+let wi = 0, ci = 0, deleting = false;
+const el = document.getElementById('typewriter-text');
+
+function type() {
+  const word = words[wi];
+  if (!deleting) {
+    el.textContent = word.slice(0, ++ci);
+    if (ci === word.length) { deleting = true; setTimeout(type, 1800); return; }
+  } else {
+    el.textContent = word.slice(0, --ci);
+    if (ci === 0) { deleting = false; wi = (wi + 1) % words.length; }
+  }
+  setTimeout(type, deleting ? 60 : 90);
+}
+type();
+
+// SKILLS TABS
+function showTab(id, btn) {
+  document.querySelectorAll('.skills-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// HAMBURGER MENU
+function toggleMenu() {
+  document.getElementById('nav-mobile').classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('nav-mobile').classList.remove('open');
+}
+
+// SCROLL REVEAL
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+revealEls.forEach(el => observer.observe(el));
+
+// FORM SUBMIT
+function handleSubmit(e) {
+  e.preventDefault();
+  const msg = document.getElementById('form-msg');
+  msg.style.display = 'block';
+  e.target.reset();
+  setTimeout(() => { msg.style.display = 'none'; }, 4000);
+}
 </script>
-
 </body>
 </html>
